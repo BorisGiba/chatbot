@@ -102,9 +102,7 @@ function getBotResponse(response="",forceSend=false) {
     const rpsAgainRegex = new RegExp("another one|(one )?more|[Rr]evanche|[Rr]evenge|[Rr]ematch|again")
     const jokeRegex = new RegExp("[Hh]ey [Cc]y,? (tell (me )?a )?joke");
     const jokeAgainRegex = new RegExp("another one|(one )?more|again");
-    //alert(response!="")
     if (response!=""){
-        //alert("fsafasffff")
         botText=response;
     }
     else if (wikiRegex.test(rawText)){
@@ -114,9 +112,7 @@ function getBotResponse(response="",forceSend=false) {
         var queryText=wikiRegex.exec(rawText)[3];
         var searchText = queryText.replace(" ","_").replace("?","");
         wikiQuery = searchText;
-        //alert(wikiQuery);
         displayWikiSummary(searchText);
-        //alert(error+"FSSFAFSFSA")
         setTimeout(function(){ //workaround :/
             if (error===1){
                 chatWait('<p id="wiki_not_found" class="message"><span>' + "I am sorry, I do not know."+ "</span></p>")
@@ -124,7 +120,6 @@ function getBotResponse(response="",forceSend=false) {
         } else if(wikiMoreRegex.test(rawText)&&wikiOngoing){
         jokesOngoing=0;
         wikiOngoing=1;
-        //alert(wikiQuery)
         displayWikiSummary(wikiQuery,details=1);
         } else if (rpsRegex.test(rawText)){
             playRps();

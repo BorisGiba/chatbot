@@ -7,12 +7,15 @@ vocList = getVoc();
 model = loadModel();
 voc = extractDictionary(vocList);
 var suggestionRef = document.getElementById("suggestion");
+var timeNote = document.getElementById("time");
 
 suggestionRef.onclick = function() {
     var inp =  document.getElementById("textInput");
     inp.value = suggestionRef.textContent;
     getBotResponse();
 }
+
+time.textContent="Today at "+getTime();
 
 setTimeout(function(){
     chatWait("<p class='message'><span>" + "Hi! ^.^" + "</span></p>")
