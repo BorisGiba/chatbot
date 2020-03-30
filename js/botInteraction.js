@@ -85,11 +85,11 @@ function playRps(){
 
 function getBotResponse(response="",forceSend=false) {
     var botText = response;
-    var rawText = $("#textInput").val();
+    var rawText = String($("#textInput").val()).replace("<script>","").replace("</script>","");
     if (rawText != "" || forceSend===true ){
         var userHtml = '<p class="message user"><span>' + rawText + "</span></p>";
         if (rawText!=""){
-        $("#textInput").val("");
+        String($("#textInput").val("")).replace("<script>","").replace("</script>","");
         $("#chat").append(userHtml);
         }
         document
