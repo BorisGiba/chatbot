@@ -10,7 +10,7 @@ var questions;
 questions=getQuestions();
 
 async function loadModel() {
-    model = await tf.loadLayersModel("https://raw.githubusercontent.com/BorisGiba/test/master/model.json");
+    model = await tf.loadLayersModel("https://raw.githubusercontent.com/BorisGiba/chatbot/master/js/model/model.json");
     return model
     }
 
