@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+	<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+	<link rel= "stylesheet" type= "text/css" href= "css/main.css">
+	<link rel="stylesheet" href="css/ionicons.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css">
+	<link rel="stylesheet" href="css/gradient.css">
+	<link rel="shortcut icon" type="image/png" href="favicon.png">
+	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+	<script type="text/javascript" src="js/mimir.js"></script>
+	<script type="text/javascript" src="js/getters.js"></script>
+	<script type="text/javascript" src="js/wikiSummariser.js"></script>
+	<script type="text/javascript" src="js/mimirEdit.js"></script>
+	<script type="text/javascript" src="js/botInteraction.js"></script>
+	<script type="text/javascript" src="js/onload.js"></script>
+	<title>Cy, an interactive chatbot!</title>
+	</head>
+	<body>
+	<div class="background gradient">
+		<ul class="bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    	</ul>
+	</div>
+	<div class="center">
+	  <div class="contacts">
+		<h2>
+		  Info
+		</h2>
+		<div class="contact">
+		  <div class="pic bot"></div>
+		  <div class="name">
+			Cy
+		  </div>
+		  <div class="message">
+			I'm Cy, Boris' personal chatbot! Say hello to me! (◠‿◠✿)
+		  </div>
+		</div>
+		<div class="message" style= "font-size: 0.9rem;color: #999;">
+			<h3>
+				List of interactions:
+			</h3>
+			<p>
+				<ul>
+					<li><b>Play Rock-Paper-Scissors!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to start playing!<ul>
+						<li>Hey Cy, lets play Rock Paper Scissors!</li>
+						<li>Lets play RPS!</li>
+						<li>Hey Cy, lets play Rock Paper Scissors!</li>
+					</ul>
+					To play again you can also type <ul>
+						<li>Again!</li>
+						<li>One more!</li>
+						<li>Rematch!</li>
+					</ul>
+				</li>
+				</ul>
+				<li><b>Ask for a definition!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to receive information!<ul>
+						<li>Hey Cy, what is Stack Overflow?</li>
+						<li>Hey Cy, what are heroes?</li>
+						<li>Hey Cy, what is a hyperbolic paraboloid?</li>
+					</ul>
+					To receive more details about the questioned term type <ul>
+						<li>Tell me more!</li>
+						<li>more info please!</li>
+						<li>more</li>
+					</ul>
+				</li>
+				</ul>
+				<li><b>Hear a joke!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to get some laughter!<ul>
+						<li>Hey Cy, tell a joke</li>
+						<li>tell a joke please</li>
+						<li>hey cy give me a funny joke</li>
+					</ul>
+					To receive additional jokes type <ul>
+						<li>Another one!</li>
+						<li>more!</li>
+						<li>tell one more</li>
+					</ul>
+				</li>
+				</ul>
+			</ul>
+			</p>
+			<h3>Acknowledgements</h3>
+			<p>
+				The UI of this chatbot is based on <a style="color:white;" href="https://codepen.io/mubangadv/pen/rXrOQa">this</a> codepen,
+				it was however heavily modified and extended.
+				The chatbot-icon was taken from <a style="color:white;" href="https://www.flaticon.com/de/kostenloses-icon/glucklich_1793433">here</a>.
+			</p>
+			<p>
+				The dataset used for training this chatbot is based on <a style="color:white;" href="https://github.com/Machine-Learning-Tokyo/seq2seq_bot">this</a>
+				as well as <a style="color:white;" href="https://github.com/Bhargava-Sai-P/Chatbot-using-nltk">this</a> project.
+				However, the data was heavily reorganised, restructured and expanded on completely by hand. About 50% of the examples were cut and a large amount of
+				own data points (questions, as well as answers) was added manually.<br>
+				The list of jokes was taken from <a style="color:white;" href="https://github.com/amoudgl/short-jokes-dataset">here</a>.
+			</p>
+			<p>
+				© Boris Giba, 2020
+			</p>
+		</div>
+	  </div>
+	  <div class="chatSuper">
+	  <div class="contact bar">
+		<div class="pic bot"></div>
+		<div class="name">
+		  Cy
+		</div>
+		<div class="seen">
+		  Online and ready!   ＼(＾▽＾)／
+		</div>
+	  </div>
+	  <div class="chat">
+		<div class="messages" id="chat">
+		  <div class="time">
+			Today at 11:41
+		  </div>
+		</div>
+		<div class="input" style="flex-direction: column; padding-top:15px" id="userInput">
+			<div style="display:flex; flex-direction: row;">
+				<input id="textInput" placeholder="Type your message here!" type="text" style="width:17rem"/><span id='clickableIcon'><ion-icon name="send"></ion-icon></span>
+			</div>
+			<div style="display:flex; flex-direction: row; margin-right:22rem; margin-bottom:60px;">
+				<p style="color:white; width:100%; text-align: left; font-size:12pt; display:flex; margin-right:8rem; position: absolute;">Suggestion:</p>
+				<a id="suggestion" style="color:white; width: 200px; font-size:12pt; z-index:10; cursor: pointer; display:flex; margin-top:1rem; margin-bottom:1rem; position: absolute; margin-left:6rem;text-decoration: underline;">Hi!</a>
+			</div>
+		</div>
+	  </div>
+	</div>
+	<label id="info_button" class="info_button" for="toggle-1"> Show Info </label>
+	<input type="checkbox" id="toggle-1">
+	<div id="contacts_mobile" class="contacts_mobile">
+		<h2>
+		  Info
+		</h2>
+		<div class="contact">
+		<div class="pic bot"></div>
+		  <div class="name">
+			Cy
+		  </div>
+		  <div class="message">
+			I'm Cy, Boris' personal chatbot! Say hello to me! (◠‿◠✿)
+		  </div>
+		</div>
+		</br>
+		<div class="message" style= "font-size: 0.9rem;color: #999;">
+			<h3>
+				List of interactions:
+			</h3>
+			<p>
+				<ul>
+					<li><b>Play Rock-Paper-Scissors!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to start playing!<ul>
+						<li>Hey Cy, lets play Rock Paper Scissors!</li>
+						<li>Lets play RPS!</li>
+						<li>Hey Cy, lets play Rock Paper Scissors!</li>
+					</ul>
+					To play again you can also type <ul>
+						<li>Again!</li>
+						<li>One more!</li>
+						<li>Rematch!</li>
+					</ul>
+				</li>
+				</ul>
+				<li><b>Ask for a definition!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to receive information!<ul>
+						<li>Hey Cy, what is Stack Overflow?</li>
+						<li>Hey Cy, what are heroes?</li>
+						<li>Hey Cy, what is a hyperbolic paraboloid?</li>
+					</ul>
+					To receive more details about the questioned term type <ul>
+						<li>Tell me more!</li>
+						<li>more info please!</li>
+						<li>more</li>
+					</ul>
+				</li>
+				</ul>
+				<li><b>Hear a joke!</b></li>
+					<ul>
+					<li>Usage: Type a phrase similar to these ones to get some laughter!<ul>
+						<li>Hey Cy, tell a joke</li>
+						<li>tell a joke please</li>
+						<li>hey cy give me a funny joke</li>
+					</ul>
+					To receive additional jokes type <ul>
+						<li>Another one!</li>
+						<li>more!</li>
+						<li>tell one more</li>
+					</ul>
+				</li>
+				</ul>
+			</ul>
+			</p>
+			<h3>Acknowledgements</h3>
+			<p>
+				The UI of this chatbot is based on <a style="color:white;" href="https://codepen.io/mubangadv/pen/rXrOQa">this</a> codepen,
+				it was however heavily modified and extended.
+				The chatbot-icon was taken from <a style="color:white;" href="https://www.flaticon.com/de/kostenloses-icon/glucklich_1793433">here</a>.
+			</p>
+			<p>
+				The dataset used for training this chatbot is based on <a style="color:white;" href="https://github.com/Machine-Learning-Tokyo/seq2seq_bot">this</a>
+				as well as <a style="color:white;" href="https://github.com/Bhargava-Sai-P/Chatbot-using-nltk">this</a> project.
+				However, the data was heavily reorganised, restructured and expanded on completely by hand. About 50% of the examples were cut and a large amount of
+				own data points (questions, as well as answers) was added manually.<br>
+				The list of jokes was taken from <a style="color:white;" href="https://github.com/amoudgl/short-jokes-dataset">here</a>.
+			</p>
+			<p>
+				© Boris Giba, 2020
+			</p>
+		</div>
+	  </div>
+	  <div></div>
+	</div>
+	<script type="text/javascript">
+	$("#textInput").keypress(function(e) {
+    if (e.which == 13) {
+		getBotResponse();}
+    });
+		$("#clickableIcon").click(function(ev){
+	getBotResponse()
+	});
+	</script>
+	<script>
+	$("#info_button").click(function(){
+		setTimeout(function(){
+            document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+            }, 1);})
+	</script>
+	</body>
+</html>
