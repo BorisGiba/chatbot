@@ -18,9 +18,9 @@
 
 ## Functionality
 
-The intention behind this project was to create an interactable chatbot using only tensorflow.js for the output-predictions.
-A very sophisticated chatbot can be created utilizing BERT or GPT-2 or similarly large models,
-however training those models as well as providing a web-interface to showcase the created chatbot would be very resource-heavy tasks.
+The intention behind this project was to create an interactable chatbot using only tensorflow.js for predicting responses.
+A very sophisticated chatbot can be created utilizing large models such as BERT or GPT-2,
+however training those models as well as providing a web-interface to showcase the created chatbot would be very resource-heavy.
 For those reasons I chose an intent-based model, which tries to match the user-input to a certain "intent" and then chooses one of multiple pre-defined answers.
 This, of course, is not nearly as exciting as a generative approach (I may return to that idea in the future),
 however, this variant is very light and resource-efficient.
@@ -33,11 +33,15 @@ Cy knows a lot of them..
   <img width="400" src="images/cbjoke1.png"> <img width="400" src="images/cbjoke2.png">
 </p>
 
+For the joke-functionality I utilized [this](https://github.com/amoudgl/short-jokes-dataset) dataset.
+
 ### Ask for a definition!
 He knows everything and can even provide a summary!
 <p>
   <img width="400" src="images/cbdef1.png"> <img width="400" src="images/cbdef2.png">
 </p>
+
+FOr the definition-functionality I utilized the Wikipedia API.
 
 ### Play rock paper scissors!
 Seems like he won the first time.. but I got my revenge! :D

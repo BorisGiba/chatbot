@@ -100,7 +100,7 @@ function getBotResponse(response="",forceSend=false) {
     const wikiMoreRegex = new RegExp("(tell me )?more");
     const rpsRegex = new RegExp("([Hh]ey [Cc]y,? )?let'?s play r(ock)?[- ]?p(aper)?[- ]?s(cissors)?");
     const rpsAgainRegex = new RegExp("another one|(one )?more|[Rr]evanche|[Rr]evenge|[Rr]ematch|again")
-    const jokeRegex = new RegExp("[Hh]ey [Cc]y,? (tell (me )?a )?joke");
+    const jokeRegex = new RegExp("[Hh]ey [Cc]y,? (tell (me )?a )?(.*)?joke");
     const jokeAgainRegex = new RegExp("another one|(one )?more|again");
     if (response!=""){
         botText=response;
